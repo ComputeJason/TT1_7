@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-
 export const Introduction = () => {
 	return (
 		<div

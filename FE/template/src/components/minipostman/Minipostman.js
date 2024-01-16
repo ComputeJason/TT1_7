@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-
 import { Introduction } from "./Introduction";
 import { GetRequestSection } from "./GetRequestSection";
 import { PostRequestSection } from "./PostRequestSection";
