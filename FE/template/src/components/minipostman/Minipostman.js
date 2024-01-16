@@ -1,8 +1,8 @@
-import { Introduction } from "./Introduction";
-import { GetRequestSection } from "./GetRequestSection";
-import { PostRequestSection } from "./PostRequestSection";
-import { InformationSection } from "./InformationSection";
-import { Postman } from "./Postman";
+import { Introduction } from "./minipostmanComponents/Introduction";
+import { GetRequestSection } from "./minipostmanComponents/GetRequestSection";
+import { PostRequestSection } from "./minipostmanComponents/PostRequestSection";
+import { InformationSection } from "./minipostmanComponents/InformationSection";
+import { Postman } from "./minipostmanComponents/Postman";
 
 export const Minipostman = () => {
 	const bodyStyle = {
@@ -18,14 +18,14 @@ export const Minipostman = () => {
 		<>
 			<Introduction />
 
+			<Postman />
+
 			<div style={bodyStyle}>
 				<InformationSection />
 
 				<GetRequestSection />
 
 				<PostRequestSection />
-
-				<Postman />
 			</div>
 		</>
 	);
@@ -37,13 +37,3 @@ export const Minipostman = () => {
 // BE useful packages
 // FE downlaoded packages and what they do
 // FE useful packages
-
-// GET
-// FIRST GET REQUEST button -> click and then display message
-// Generate Random Dog button
-
-// POST --> some explain
-// input name
-// input adjective
-// submit button post request
-// show message that came from the Backend.

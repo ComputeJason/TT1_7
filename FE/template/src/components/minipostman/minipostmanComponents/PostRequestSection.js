@@ -32,7 +32,7 @@ export const PostRequestSection = () => {
 	};
 
 	return (
-		<div>
+		<div style={{ paddingBottom: "7rem" }}>
 			<Divider />
 			<h2>3) POST Request Demo </h2>
 

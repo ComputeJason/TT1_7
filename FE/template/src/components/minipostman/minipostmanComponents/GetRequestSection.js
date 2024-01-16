@@ -39,7 +39,7 @@ export const GetRequestSection = () => {
 	useEffect(() => {}, []);
 
 	return (
-		<div>
+		<div style={{ paddingTop: "1rem" }}>
 			<Divider />
 			<h2>2) GET Request Demo</h2>
 

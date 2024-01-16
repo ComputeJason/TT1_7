@@ -40,12 +40,24 @@ export const Postman = () => {
 	};
 
 	return (
-		<div style={{ paddingBottom: "7rem", paddingTop: "1rem" }}>
+		<div
+			style={{
+				paddingBottom: "2rem",
+				paddingTop: "1rem",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				height: "100%",
+				flexDirection: "column",
+			}}
+		>
 			<Divider />
-			<h2>4) Postman </h2>
-
 			<React.Fragment>
-				<h3>Enter GET / POST endpoints to test!</h3>
+				<h3>
+					{" "}
+					------------------------------ Enter GET / POST endpoints to test!
+					------------------------------
+				</h3>
 				<form onSubmit={onSubmitRequestHandler}>
 					<Stack direction={"row"}>
 						<p style={{ color: "green" }}>
@@ -68,45 +80,48 @@ export const Postman = () => {
 							<b>POST</b>{" "}
 						</p>
 					</Stack>
-					<TextField
-						type="text"
-						variant="outlined"
-						color="secondary"
-						label="Request Endpoint"
-						onChange={(e) => {
-							setEndpointURL(e.target.value);
-						}}
-						value={endpointURL}
-						fullWidth
-						required
-						style={{ paddingBottom: "1rem" }}
-					/>
-
-					{!isGetRequest && (
+					<Stack>
 						<TextField
-							multiline={true}
-							placeholder='{"name": "Jason"}'
-							rows={10}
 							type="text"
 							variant="outlined"
 							color="secondary"
-							label="POST Request Payload"
+							placeholder="http://localhost:4000/api/minipostman/firstGetRequest"
+							label="Request Endpoint"
 							onChange={(e) => {
-								setPostRequestPayload(e.target.value);
+								setEndpointURL(e.target.value);
 							}}
-							value={postRequestPayload}
-							fullWidth
+							value={endpointURL}
+							fullWidth={true}
 							required
-							style={{ paddingBottom: "1rem" }}
+							style={{ paddingBottom: "1rem", width: "40rem" }}
 						/>
-					)}
 
-					<Button variant="contained" color="secondary" type="submit">
-						Send Request
-					</Button>
+						{!isGetRequest && (
+							<TextField
+								multiline={true}
+								placeholder='{"name": "Jason"}'
+								rows={10}
+								type="text"
+								variant="outlined"
+								color="secondary"
+								label="POST Request Payload"
+								onChange={(e) => {
+									setPostRequestPayload(e.target.value);
+								}}
+								value={postRequestPayload}
+								fullWidth
+								required
+								style={{ paddingBottom: "1rem" }}
+							/>
+						)}
+
+						<Button variant="contained" color="secondary" type="submit">
+							Send Request
+						</Button>
+					</Stack>
 				</form>
 
-				<pre style={{ paddingLeft: "6rem" }}>{requestResponse}</pre>
+				<pre>{requestResponse}</pre>
 			</React.Fragment>
 		</div>
 	);
