@@ -1,23 +1,52 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const Minipostman = () => {
-	const [adminInstructions, setAdminInstructions] = useState("hello");
+import { Introduction } from "./Introduction";
+import { GetRequestSection } from "./GetRequestSection";
+import { PostRequestSection } from "./PostRequestSection";
+import { InformationSection } from "./InformationSection";
+import { Postman } from "./Postman";
 
-	useEffect(() => {
-		const getAdminInstructions = async () => {
-			const response = await axios.get(
-				"http://localhost:4000/api/minipostman/adminInstructions"
-			);
-			console.log(response);
-			setAdminInstructions(response.data.results);
-		};
-		getAdminInstructions();
-	}, []);
+export const Minipostman = () => {
+	const bodyStyle = {
+		display: "flex",
+		alignItems: "start",
+		justifyContent: "start",
+		height: "100%",
+		flexDirection: "column",
+		paddingLeft: "2rem",
+	};
 
 	return (
 		<>
-			<h1>{adminInstructions}</h1>
+			<Introduction />
+
+			<div style={bodyStyle}>
+				<InformationSection />
+
+				<GetRequestSection />
+
+				<PostRequestSection />
+
+				<Postman />
+			</div>
 		</>
 	);
 };
+
+// basic info
+// File Structure?
+// BE downlaoded packages and what they do
+// BE useful packages
+// FE downlaoded packages and what they do
+// FE useful packages
+
+// GET
+// FIRST GET REQUEST button -> click and then display message
+// Generate Random Dog button
+
+// POST --> some explain
+// input name
+// input adjective
+// submit button post request
+// show message that came from the Backend.
