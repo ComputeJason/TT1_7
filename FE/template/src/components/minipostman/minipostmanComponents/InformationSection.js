@@ -38,7 +38,7 @@ export const InformationSection = () => {
 				start"
 			</p>
 			<p style={removeWhiteSpace}>
-				- Simple routing done in App.js with package 'react-router-dom'
+				- Simple routing done in index.js with package 'react-router-dom'
 				installed. Feel free to overhaul it to implementing your own routing
 				design.
 			</p>
