@@ -5,7 +5,7 @@
 npm install
 ```
 
-### To Start w/o autorefresh: 
+### To Start FE app: 
 ```
 cd template 
 npm start
