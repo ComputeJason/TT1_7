@@ -1,5 +1,10 @@
 ## Built with node & express configured to start on port 4000
 
+### After cloning, inside BE folder, install dependencies
+``` 
+npm install
+```
+
 ### To Start w/o autorefresh: 
 ```
 node app.js 
