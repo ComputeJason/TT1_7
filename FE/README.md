@@ -1,5 +1,10 @@
 ## Built with React & configured to start on port 3000
 
+### After cloning, inside template folder, install dependencies
+``` 
+npm install
+```
+
 ### To Start w/o autorefresh: 
 ```
 cd template 
