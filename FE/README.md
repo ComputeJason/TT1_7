@@ -2,6 +2,7 @@
 
 ### To Start w/o autorefresh: 
 ```
+cd template 
 npm start
 ```
 
