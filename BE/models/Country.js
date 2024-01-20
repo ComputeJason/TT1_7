@@ -20,7 +20,8 @@ const Country = sequelize.define(
     }
 );
 
-Country.hasMany(Itinerary, {
+Country.hasMany(
+    Itinerary, {
     foreignKey: "country_id",
 });
 
