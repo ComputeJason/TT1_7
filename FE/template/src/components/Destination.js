@@ -173,11 +173,5 @@ export default DestinationList;
 
 
 
-      
-
-
-
-
-
 
 

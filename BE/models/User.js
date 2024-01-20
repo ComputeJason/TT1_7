@@ -1,7 +1,6 @@
 const sequelize = require("./../connection");
 const { DataTypes } = require("sequelize");
 const Itinerary = require("./Itinerary");
-const Destination = require("./Destination");
 
 const User = sequelize.define(
     "user",
@@ -9,6 +8,7 @@ const User = sequelize.define(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement:true
         },
         first_name: {
             type: DataTypes.STRING(50),
@@ -31,10 +31,6 @@ const User = sequelize.define(
 
 User.hasMany(Itinerary, {
     foreignKey: "user_id",
-});
-
-User.hasMany(Destination, {
-    foreignKey: "destination_id",
 });
 
 module.exports = User;

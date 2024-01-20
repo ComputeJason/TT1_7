@@ -1,5 +1,6 @@
 const sequelize = require("./../connection");
 const { DataTypes } = require("sequelize");
+const Itinerary = require("./Itinerary");
 
 const Country = sequelize.define(
     "country",
@@ -7,6 +8,7 @@ const Country = sequelize.define(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement:true
         },
         name: {
             type: DataTypes.STRING,
@@ -18,7 +20,8 @@ const Country = sequelize.define(
     }
 );
 
-Country.hasMany(Itinerary, {
+Country.hasMany(
+    Itinerary, {
     foreignKey: "country_id",
 });
 
