@@ -65,7 +65,7 @@ const Destination = () => {
             style={{ marginRight: '10px' }}
           />
           <TextField
-            label="Budget"
+            label="Cost"
             value={newRow.budget}
             onChange={(e) => handleInputChange(e, 'budget')}
             style={{ marginRight: '10px' }}
