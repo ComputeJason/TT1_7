@@ -24,7 +24,6 @@ const DestinationList = ({ countryId }) => {
       //const response = await fetch(`http://localhost:4000/destination/${countryId}`);
       //const data = await response.json();
 
-      // Simulated data (remove this in your actual code)
       const data = {
         "status": "success",
         "data": [
