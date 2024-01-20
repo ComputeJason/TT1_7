@@ -68,12 +68,6 @@ const ItineraryDetails = ( {itineraryID}) => {
         <div className="itineraryTitle">
             <h1> Itinerary Title </h1>
         </div>
-        <div className="topText">
-            <p> Budget: $300 </p>
-            <p> Current Cost: $150 </p>
-            <p> Country: Singapore </p>
-        </div>
-
         <Button
             variant="contained"
             color="primary"
@@ -94,12 +88,12 @@ const ItineraryDetails = ( {itineraryID}) => {
 
                 <TableBody>
                     {destinations.map((row) => (
-                        <StyledTableRow key = {row.destinationName}>
+                        <StyledTableRow key = {row.name}>
                             <StyledTableCell component="th" scope="row">
-                                {row.destinationName}
+                                {row.name}
                             </StyledTableCell>
-                            <StyledTableCell> {row.destinationCost} </StyledTableCell>
-                            <StyledTableCell> {row.destionationNotes} </StyledTableCell>
+                            <StyledTableCell> {row.cost} </StyledTableCell>
+                            <StyledTableCell> {row.notes} </StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>
