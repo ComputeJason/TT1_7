@@ -21,9 +21,9 @@ app.use(express.json());
 app.use("/api/minipostman", minipostmanRouter);
 
 app.listen(PORT, (error) => {
-	if (!error) {
-		console.log(`Server is Running. Listening for request on port ${PORT}`);
-	} else {
-		console.log(`Server Cannot start. Error occured: ${error}`);
-	}
+    if (!error) {
+        console.log(`Server is Running. Listening for request on port ${PORT}`);
+    } else {
+        console.log(`Server Cannot start. Error occured: ${error}`);
+    }
 });
