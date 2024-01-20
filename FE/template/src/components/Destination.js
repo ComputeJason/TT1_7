@@ -1,8 +1,4 @@
-// Destination.js
-
-// Destination.js
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -13,44 +9,107 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-const createData = (destination, budget, notes) => {
-  return { destination, budget, notes };
-};
-
-const Destination = () => {
+const DestinationList = ({ countryId }) => {
+  const [destinations, setDestinations] = useState([]);
   const [showInputFields, setShowInputFields] = useState(false);
-  const [rows, setRows] = useState([
-    createData("Destination 1", "$1000", "Notes for Destination 1"),
-    createData("Destination 2", "$1500", "Notes for Destination 2"),
-    createData("Destination 3", "$800", "Notes for Destination 3"),
-  ]);
+  const [newRow, setNewRow] = useState({ name: '', cost: '', notes: '' });
 
-  const [newRow, setNewRow] = useState({ destination: '', cost: '', notes: '' });
+  useEffect(() => {
+    fetchData();
+  }, [countryId]);
+
+  const fetchData = async () => {
+    try {
+      // Replace the following with the actual API fetch logic
+      //const response = await fetch(`http://localhost:4000/destination/${countryId}`);
+      //const data = await response.json();
+
+      // Simulated data (remove this in your actual code)
+      const data = {
+        "status": "success",
+        "data": [
+          {
+            "id": 1,
+            "country_id": 1,
+            "cost": 50,
+            "name": "Marina Bay Sands",
+            "notes": "Iconic hotel with an infinity pool and stunning views of the city skyline. Open 24/7."
+          },
+          // Add more data as needed
+        ]
+      };
+
+      // Set destinations regardless of whether the fetch was successful
+      setDestinations(data.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // You can handle errors here if needed
+    }
+  };
 
   const handleInputChange = (e, key) => {
     setNewRow({ ...newRow, [key]: e.target.value });
   };
 
   const addRow = () => {
-    if (newRow.destination.trim() !== '' && newRow.budget.trim() !== '' && newRow.notes.trim() !== '') {
-      setRows([...rows, newRow]);
-      setNewRow({ destination: '', budget: '', notes: '' });
-      setShowInputFields(false); // Hide input fields after adding a new row
+    if (newRow.name.trim() !== '' && newRow.cost.trim() !== '' && newRow.notes.trim() !== '') {
+      createDestination(newRow);
+    }
+  };
+
+  const createDestination = async (newDestination) => {
+    try {
+      // Make the API call without awaiting the response
+      await fetch('http://localhost:4000/destination', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newDestination),
+      });
+
+      // Assuming the API call is successful
+      // Fetching data from the API
+      fetchData();
+
+      // Updating the state with the new data
+      setDestinations((prevDestinations) => [...prevDestinations, newDestination]);
+
+      // Clearing the input fields
+      setNewRow({ name: '', cost: '', notes: '' });
+
+      // Hiding the input fields
+      setShowInputFields(false);
+    } catch (error) {
+      console.error('Error:', error);
+
+      // Even if there's an error in the API call, proceed with the actions below
+      // Fetching data from the API
+      fetchData();
+
+      // Updating the state with the new data
+      setDestinations((prevDestinations) => [...prevDestinations, newDestination]);
+
+      // Clearing the input fields
+      setNewRow({ name: '', cost: '', notes: '' });
+
+      // Hiding the input fields
+      setShowInputFields(false);
     }
   };
 
   return (
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center', 
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       padding: '20px',
-      backgroundColor: '#add8e6', // light blue color
+      backgroundColor: '#add8e6',
     }}>
-      <Button 
-        variant="contained" 
-        color="primary" 
-        onClick={() => setShowInputFields(true)} 
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => setShowInputFields(true)}
         style={{ marginBottom: '20px' }}
       >
         Add New Row
@@ -59,15 +118,15 @@ const Destination = () => {
       {showInputFields && (
         <div>
           <TextField
-            label="Destination"
-            value={newRow.destination}
-            onChange={(e) => handleInputChange(e, 'destination')}
+            label="Destination name"
+            value={newRow.name}
+            onChange={(e) => handleInputChange(e, 'name')}
             style={{ marginRight: '10px' }}
           />
           <TextField
             label="Cost"
-            value={newRow.budget}
-            onChange={(e) => handleInputChange(e, 'budget')}
+            value={newRow.cost}
+            onChange={(e) => handleInputChange(e, 'cost')}
             style={{ marginRight: '10px' }}
           />
           <TextField
@@ -87,20 +146,20 @@ const Destination = () => {
           <TableHead>
             <TableRow>
               <TableCell>Destination</TableCell>
-              <TableCell align="right">Budget</TableCell>
+              <TableCell align="right">Cost</TableCell>
               <TableCell align="right">Notes</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
+            {destinations.map((row, index) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {row.destination}
+                  {row.name}
                 </TableCell>
-                <TableCell align="right">{row.budget}</TableCell>
+                <TableCell align="right">{row.cost}</TableCell>
                 <TableCell align="right">{row.notes}</TableCell>
               </TableRow>
             ))}
@@ -111,7 +170,13 @@ const Destination = () => {
   );
 };
 
-export default Destination;
+export default DestinationList;
+
+
+
+      
+
+
 
 
 
