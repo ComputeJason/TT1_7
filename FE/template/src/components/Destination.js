@@ -31,7 +31,7 @@ const DestinationList = ({ countryId }) => {
             "id": 1,
             "country_id": 1,
             "cost": 50,
-            "name": "Marina Bay Sands",
+            "name": "MarinaBay Sands",
             "notes": "Iconic hotel with an infinity pool and stunning views of the city skyline. Open 24/7."
           },
           // Add more data as needed
