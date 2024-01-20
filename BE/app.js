@@ -1,5 +1,6 @@
 const minipostmanRouter = require(`./routes/minipostmanRouter`);
 const loginRouter = require(`./routes/loginRouter`);
+const itineraryRouter = require(`./routes/Itinerary`);
 
 const express = require("express");
 const morgan = require("morgan");
@@ -21,6 +22,7 @@ app.use(express.json());
 
 app.use("/api/minipostman", minipostmanRouter);
 app.use("/login", loginRouter);
+app.use("/itineraryRouter",itineraryRouter)
 
 app.listen(PORT, (error) => {
     if (!error) {
