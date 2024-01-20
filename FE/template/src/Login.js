@@ -1,59 +1,56 @@
-import { useRef, useState, useEffect, useContext } from 'react';
+import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "./context/AuthProvider";
 
-import axios from './api/axios';
-const LOGIN_URL = '/auth';
+import axios from "./api/axios";
+const LOGIN_URL = "/auth";
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
-    const [errMsg, setErrMsg] = useState('');
+    const [user, setUser] = useState("");
+    const [pwd, setPwd] = useState("");
+    const [errMsg, setErrMsg] = useState("");
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
-    }, [])
+    }, []);
 
     useEffect(() => {
-        setErrMsg('');
-    }, [user, pwd])
+        setErrMsg("");
+    }, [user, pwd]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:4000/login",
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            console.log(JSON.stringify(response?.data));
+            const response = await axios.post("http://localhost:4000/login", {
+                username: user,
+                password: pwd,
+            });
+            console.log(response);
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({ user, pwd, roles, accessToken });
-            setUser('');
-            setPwd('');
+            setUser("");
+            setPwd("");
             setSuccess(true);
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrMsg("No Server Response");
             } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
+                setErrMsg("Missing Username or Password");
             } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
+                setErrMsg("Unauthorized");
             } else {
-                setErrMsg('Login Failed');
+                setErrMsg("Login Failed");
             }
             errRef.current.focus();
         }
-    }
+    };
 
     return (
         <>
@@ -67,7 +64,13 @@ const Login = () => {
                 </section>
             ) : (
                 <section>
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    <p
+                        ref={errRef}
+                        className={errMsg ? "errmsg" : "offscreen"}
+                        aria-live="assertive"
+                    >
+                        {errMsg}
+                    </p>
                     <h1>Sign In</h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">Username:</label>
@@ -94,7 +97,7 @@ const Login = () => {
                 </section>
             )}
         </>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;
