@@ -8,6 +8,7 @@ const Country = sequelize.define(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement:true
         },
         name: {
             type: DataTypes.STRING,
@@ -19,7 +20,8 @@ const Country = sequelize.define(
     }
 );
 
-Country.hasMany(Itinerary, {
+Country.hasMany(
+    Itinerary, {
     foreignKey: "country_id",
 });
 
