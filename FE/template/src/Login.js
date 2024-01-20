@@ -2,12 +2,14 @@ import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "./context/AuthProvider";
 
 import axios from "./api/axios";
+import { useNavigate } from "react-router-dom";
 const LOGIN_URL = "/auth";
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
+    const navigate = useNavigate();
 
     const [user, setUser] = useState("");
     const [pwd, setPwd] = useState("");
@@ -38,6 +40,7 @@ const Login = () => {
             setUser("");
             setPwd("");
             setSuccess(true);
+            navigate("/dashboard");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg("No Server Response");
@@ -53,7 +56,7 @@ const Login = () => {
     };
 
     return (
-        <>
+        <div className="App">
             {success ? (
                 <section>
                     <h1>You are logged in!</h1>
@@ -96,7 +99,7 @@ const Login = () => {
                     </form>
                 </section>
             )}
-        </>
+        </div>
     );
 };
 
