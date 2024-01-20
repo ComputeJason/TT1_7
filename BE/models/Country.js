@@ -1,5 +1,6 @@
 const sequelize = require("./../connection");
 const { DataTypes } = require("sequelize");
+const Itinerary = require("./Itinerary");
 
 const Country = sequelize.define(
     "country",

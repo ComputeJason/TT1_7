@@ -1,4 +1,5 @@
 const minipostmanRouter = require(`./routes/minipostmanRouter`);
+const loginRouter = require(`./routes/loginRouter`);
 
 const express = require("express");
 const morgan = require("morgan");
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/minipostman", minipostmanRouter);
+app.use("/api/login", loginRouter);
 
 app.listen(PORT, (error) => {
     if (!error) {

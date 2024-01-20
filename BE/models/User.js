@@ -33,8 +33,4 @@ User.hasMany(Itinerary, {
     foreignKey: "user_id",
 });
 
-User.hasMany(Destination, {
-    foreignKey: "destination_id",
-});
-
 module.exports = User;
