@@ -7,8 +7,8 @@ const Destination = sequelize.define(
 	{
 		id: {
 			type: DataTypes.INTEGER,
-			autoIncrement: true,
 			primaryKey: true,
+			autoIncrement: true,
 		},
 		country_id: {
 			type: DataTypes.INTEGER,

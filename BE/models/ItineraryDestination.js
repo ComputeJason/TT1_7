@@ -7,6 +7,7 @@ const ItineraryDestination = sequelize.define(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement:true
         },
         itinerary_id: {
             type: DataTypes.INTEGER,
