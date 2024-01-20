@@ -10,11 +10,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 
-const createData = (title, country, destinations) => {
-    return { title, country, destinations };
-};
-
-
 function Dashboard() {
     const [itineraryList, setItineraryList] = useState([
         {"title": "test", "destination": "test", "country": "test"}
@@ -63,9 +58,7 @@ function Dashboard() {
                     )
                 })}        
             </List>
-        
-            
-         
+
         </div>
 	);
 }

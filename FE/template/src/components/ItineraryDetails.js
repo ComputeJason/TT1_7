@@ -1,4 +1,4 @@
-import React from "react"; 
+import React, { useEffect } from "react"; 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
@@ -40,7 +40,27 @@ const rows = [
     createData('Gardens By The Bay', '100', 'very nice garden')
 ]
   
-function ItineraryDetails() { 
+const ItineraryDetails = ( {itineraryID}) => {
+    useEffect(() => {
+        fetchData();
+    }, [itineraryID]);
+
+    const fetchData = async () => {
+		try {
+			// Replace the following with the actual API fetch logic
+			const response = await fetch(
+				`http://localhost:4000/api/itinerarydestination/destinations/${itineraryID}`
+			);
+			const data = await response.json();
+
+			// Set destinations regardless of whether the fetch was successful
+			//setDestinations(data.data);
+		} catch (error) {
+			console.error("Error fetching data:", error);
+			// You can handle errors here if needed
+		}
+	};
+
   return ( 
     <div style={{width: '100%'}}>
         <div className="itineraryTitle">
@@ -48,7 +68,7 @@ function ItineraryDetails() {
         </div>
         <div className="topText">
             <p> Budget: $300 </p>
-            <p> Current Cost: $200 </p>
+            <p> Current Cost: $150 </p>
             <p> Country: Singapore </p>
         </div>
 
