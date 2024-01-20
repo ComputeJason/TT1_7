@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -17,10 +18,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     ['&.$(tableCellClasses.body}']: {
         fontSize: 14,
     }
-}))
-
-const StyledTableHeaderCell = styled(tableCellClasses.head)(({theme}) => ({
-    backgroundColor: "black",
 }))
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -54,6 +51,15 @@ function ItineraryDetails() {
             <p> Current Cost: $200 </p>
             <p> Country: Singapore </p>
         </div>
+
+        <Button
+            variant="contained"
+            color="primary"
+            style={{ marginBottom: '20px' }}
+        >
+            Add New Destination
+        </Button>
+
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650}} aria-label = "customized table">
                 <TableHead>

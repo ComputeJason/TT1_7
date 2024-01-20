@@ -4,6 +4,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
+import { useNavigate } from "react-router-dom";
 
 const createData = (title, country, destinations) => {
     return { title, country, destinations };
@@ -14,6 +15,11 @@ function Dashboard() {
     const [itineraryList, setItineraryList] = useState([
         {"title": "test", "destination": "test", "country": "test"}
     ]);
+
+    const navigate = useNavigate();
+    const routeChange = () =>{ 
+        navigate('/details')
+    }
 
 	return (
         <div className='dashboardEverything'>
@@ -35,10 +41,12 @@ function Dashboard() {
 
             <List>
                 {itineraryList.map((itinerary) => {
-                    <ListItemButton>
-                        <ListItemText primary={itinerary.title} secondary = {itinerary.destination} />
-                        <ListItemText primary={itinerary.country}/>
-                    </ListItemButton>
+                    return (
+                        <ListItemButton onClick={routeChange}>
+                            <ListItemText primary={itinerary.title} secondary = {itinerary.destination} />
+                            <ListItemText primary={itinerary.country}/>
+                        </ListItemButton>
+                    )
                 })}        
             </List>
         </div>
