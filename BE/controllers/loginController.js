@@ -24,7 +24,7 @@ exports.loginRequest = async (req, res, next) => {
             { algorithm: "HS256" }
         );
         if (user.password === password) {
-            res.send({ token: token });
+            res.send({ token: token, id: user.id });
         } else {
             res.status(400).send("wrong password");
         }
