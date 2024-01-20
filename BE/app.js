@@ -1,4 +1,5 @@
 const minipostmanRouter = require(`./routes/minipostmanRouter`);
+const destinationRouter = require(`./routes/destinationRouter`);
 
 const express = require("express");
 const morgan = require("morgan");
@@ -19,11 +20,12 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/minipostman", minipostmanRouter);
+app.use("/destination", destinationRouter);
 
 app.listen(PORT, (error) => {
-    if (!error) {
-        console.log(`Server is Running. Listening for request on port ${PORT}`);
-    } else {
-        console.log(`Server Cannot start. Error occured: ${error}`);
-    }
+	if (!error) {
+		console.log(`Server is Running. Listening for request on port ${PORT}`);
+	} else {
+		console.log(`Server Cannot start. Error occured: ${error}`);
+	}
 });

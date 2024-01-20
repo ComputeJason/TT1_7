@@ -1,65 +1,97 @@
-exports.getAllDestinations = (req, res, next) => {
-	res.status(500).json({
-		status: "error",
-		message: "Route not yet defined!",
-	});
+const Destination = require("../models/Destination");
+
+exports.getAllDestinationsByCountryId = async (req, res, next) => {
+	try {
+		const countryId = req.params.countryId;
+		console.log(countryId);
+
+		const allDestinations = await Destination.findAll({
+			attributes: ["id", "country_id", "cost", "name", "notes"],
+			where: {
+				country_id: countryId,
+			},
+		});
+
+		// console.log(allDestinations);
+
+		res.status(200).json({
+			status: "success",
+			data: allDestinations,
+		});
+	} catch (err) {
+		console.log(err);
+
+		res.status(200).json({
+			status: "error",
+			message: "unexpected error occured",
+		});
+	}
 };
 
-exports.getAllDestinationsByCountryId = (req, res, next) => {
-	const countryId = req.params.countryId;
-
-	const allDestinations = db.getDestinationsByCountryId(countryId);
-
-	res.status(200).json({
-		status: "error",
-		message: "Route not yet defined!",
-	});
-};
-
-exports.getDestinationById = (req, res) => {
-	res.status(500).json({
-		status: "error",
-		message: "Route not yet defined!",
-	});
-};
-
-exports.createDestination = (req, res) => {
+exports.createDestination = async (req, res) => {
 	// Get POST request body
-	const newDestination = req.body;
-
+	const destination = req.body;
+	console.log(destination);
 	// Persist into Database
-	const res = db.createNewDestination();
 
-	console.log(res);
+	const newDestination = await Destination.create(destination);
+	console.log(newDestination);
 
 	res.status(200).json({
 		status: "success",
-		data: res,
+		data: "",
 	});
 };
 
-exports.deleteDestination = (req, res) => {
-	const destinationIdToDelete = req.params.id;
+exports.deleteDestination = async (req, res) => {
+	try {
+		const idToBeDeleted = req.params.id;
 
-	// Persist into Database
-	const res = db.createNewDestination();
+		const deletedDestination = await Destination.destroy({
+			where: {
+				id: idToBeDeleted,
+			},
+		});
 
-	console.log(res);
+		console.log(deletedDestination);
 
-	res.status(200).json({
-		status: "success",
-		data: res,
-	});
-
-	res.status(500).json({
-		status: "error",
-		message: "Route not yet defined!",
-	});
+		if (deletedDestination === 1) {
+			res.status(200).json({
+				status: "success",
+				message: "successfully deleted",
+			});
+		} else {
+			res.status(200).json({
+				status: "error",
+				message: "destination doesn't exist",
+			});
+		}
+	} catch (err) {
+		console.log(err);
+	}
 };
 
-exports.editDestination = (req, res) => {
-	res.status(500).json({
-		status: "error",
-		message: "Route not yet defined!",
-	});
+exports.editDestination = async (req, res) => {
+	try {
+		const idToBeEditted = req.params.id;
+		const { name, notes, cost } = req.body;
+
+		const edittedDestination = await Destination.update(
+			{ name: name, notes: notes, cost: cost },
+			{
+				where: {
+					id: idToBeEditted,
+				},
+			}
+		);
+
+		console.log(edittedDestination);
+
+		res.status(200).json({
+			status: "success",
+			message: "successfully editted",
+		});
+	} catch (err) {
+		console.log(err);
+	}
 };

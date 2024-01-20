@@ -3,18 +3,14 @@ const destinationController = require("../controllers/destinationController");
 
 const destinationRouter = express.Router();
 
-destinationRouter
-	.route("/destination")
-	.get(destinationController.getAllDestinations);
+destinationRouter.route("/").post(destinationController.createDestination);
 
 destinationRouter
-	.route("/destination/:userId/:")
-	.get(destinationController.getAllDestinationsOfIteneraryByUserId);
+	.route("/country/:countryId")
+	.get(destinationController.getAllDestinationsByCountryId);
 
 destinationRouter
-	.route("/destination/:id")
-	.get(destinationController.getDestinationById)
-	.post(destinationController.createDestination)
+	.route("/:id")
 	.delete(destinationController.deleteDestination)
 	.patch(destinationController.editDestination);
 
