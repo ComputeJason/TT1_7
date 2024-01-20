@@ -5,6 +5,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom'
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
 
 const createData = (title, country, destinations) => {
     return { title, country, destinations };
@@ -23,6 +27,16 @@ function Dashboard() {
 
 	return (
         <div className='dashboardEverything'>
+            <Navbar style={{ background:"black"}}> 
+                <Navbar.Brand href="/dashboard" style={{color: "white", paddingLeft: "10px"}}> 
+                    Itineraries      
+                </Navbar.Brand>
+                <Navbar.Brand href="/destination" style={{color: "white", paddingLeft: "250px"}}> 
+                    Destinations
+                </Navbar.Brand>
+                <br /> 
+            </Navbar>
+            
             <div className='topText'>
                 <p> Welcome, user! </p>
                 <h1> List of Itineraries </h1>
@@ -49,6 +63,9 @@ function Dashboard() {
                     )
                 })}        
             </List>
+        
+            
+         
         </div>
 	);
 }
