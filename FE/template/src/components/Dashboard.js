@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import axios from "../api/axios";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
-import axios from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const createData = (title, country, destinations) => {
     return { title, country, destinations };
@@ -25,6 +26,11 @@ function Dashboard({ userId }) {
         };
         fetchItineraries();
     }, []);
+
+    const navigate = useNavigate();
+    const routeChange = () => {
+        navigate("/details");
+    };
 
     return (
         <div className="dashboardEverything">
@@ -47,12 +53,12 @@ function Dashboard({ userId }) {
             <List>
                 {itineraryList.map((itinerary) => {
                     return (
-                        <ListItemButton>
+                        <ListItemButton onClick={routeChange}>
                             <ListItemText
-                                primary={itinerary.budget}
-                                secondary={itinerary.title}
+                                primary={itinerary.title}
+                                secondary={itinerary.destination}
                             />
-                            <ListItemText primary={itinerary.country_id} />
+                            <ListItemText primary={itinerary.country} />
                         </ListItemButton>
                     );
                 })}

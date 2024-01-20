@@ -1,7 +1,9 @@
 import Login from "./Login";
+import Destination from "./components/Destination";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
-import { useState } from "react";
+import React, { useState } from "react";
+import ItineraryDetails from "./components/ItineraryDetails";
 
 function App() {
     const [userId, setUserId] = useState("");
@@ -13,6 +15,8 @@ function App() {
                     path="/dashboard"
                     element={<Dashboard userId={userId} />}
                 />
+                <Route path="/destination" element={<Destination />} />
+                <Route path="/details" element={<ItineraryDetails />} />
             </Routes>
         </BrowserRouter>
     );
