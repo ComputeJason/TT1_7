@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"; 
+import React, { useState, useEffect }  from "react"; 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
@@ -41,6 +41,8 @@ const rows = [
 ]
   
 const ItineraryDetails = ( {itineraryID}) => {
+    const [destinations, setDestinations] = useState([]);
+
     useEffect(() => {
         fetchData();
     }, [itineraryID]);
@@ -54,7 +56,7 @@ const ItineraryDetails = ( {itineraryID}) => {
 			const data = await response.json();
 
 			// Set destinations regardless of whether the fetch was successful
-			//setDestinations(data.data);
+			setDestinations(data.data);
 		} catch (error) {
 			console.error("Error fetching data:", error);
 			// You can handle errors here if needed
@@ -91,7 +93,7 @@ const ItineraryDetails = ( {itineraryID}) => {
                 </TableHead>
 
                 <TableBody>
-                    {rows.map((row) => (
+                    {destinations.map((row) => (
                         <StyledTableRow key = {row.destinationName}>
                             <StyledTableCell component="th" scope="row">
                                 {row.destinationName}
