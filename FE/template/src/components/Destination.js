@@ -25,7 +25,7 @@ const Destination = () => {
     createData("Destination 3", "$800", "Notes for Destination 3"),
   ]);
 
-  const [newRow, setNewRow] = useState({ destination: '', budget: '', notes: '' });
+  const [newRow, setNewRow] = useState({ destination: '', cost: '', notes: '' });
 
   const handleInputChange = (e, key) => {
     setNewRow({ ...newRow, [key]: e.target.value });
