@@ -79,8 +79,8 @@ CREATE TABLE IF NOT EXISTS `itinerary_destination` (
   KEY `PK` (`id`),
   KEY `IDDestinationFK` (`destination_id`),
   KEY `IDItineraryFK` (`itinerary_id`),
-  CONSTRAINT `IDDestinationFK` FOREIGN KEY (`destination_id`) REFERENCES `destination` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `IDItineraryFK` FOREIGN KEY (`itinerary_id`) REFERENCES `itinerary` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `IDDestinationFK` FOREIGN KEY (`destination_id`) REFERENCES `destination` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `IDItineraryFK` FOREIGN KEY (`itinerary_id`) REFERENCES `itinerary` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table techtrek24.itinerary_destination: ~6 rows (approximately)

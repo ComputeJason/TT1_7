@@ -31,7 +31,7 @@ function Dashboard() {
                 <Navbar.Brand href="/dashboard" style={{color: "white", paddingLeft: "10px"}}> 
                     Itineraries      
                 </Navbar.Brand>
-                <Navbar.Brand href="/destination" style={{color: "white", paddingLeft: "250px"}}> 
+                <Navbar.Brand href="/destination" style={{color: "white", paddingLeft: "500px"}}> 
                     Destinations
                 </Navbar.Brand>
                 <br /> 
