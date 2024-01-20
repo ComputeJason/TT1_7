@@ -5,7 +5,7 @@ import axios from "./api/axios";
 import { useNavigate } from "react-router-dom";
 const LOGIN_URL = "/auth";
 
-const Login = () => {
+const Login = ({ setUserId }) => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
@@ -32,7 +32,6 @@ const Login = () => {
                 username: user,
                 password: pwd,
             });
-            console.log(response);
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
@@ -40,6 +39,7 @@ const Login = () => {
             setUser("");
             setPwd("");
             setSuccess(true);
+            setUserId(response.data.id);
             navigate("/dashboard");
         } catch (err) {
             if (!err?.response) {

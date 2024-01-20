@@ -1,33 +1,44 @@
-import React, { useState } from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Button from '@mui/material/Button';
+import React, { useState, useEffect } from "react";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import Button from "@mui/material/Button";
+import axios from "../api/axios";
 
 const createData = (title, country, destinations) => {
     return { title, country, destinations };
 };
 
+function Dashboard({ userId }) {
+    const [itineraryList, setItineraryList] = useState([]);
 
-function Dashboard() {
-    const [itineraryList, setItineraryList] = useState([
-        {"title": "test", "destination": "test", "country": "test"}
-    ]);
+    useEffect(() => {
+        const fetchItineraries = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:4000/itineraryRouter/${userId}`
+                );
+                console.log(response.data);
+                setItineraryList(response.data);
+            } catch (err) {}
+        };
+        fetchItineraries();
+    }, []);
 
-	return (
-        <div className='dashboardEverything'>
-            <div className='topText'>
+    return (
+        <div className="dashboardEverything">
+            <div className="topText">
                 <p> Welcome, user! </p>
                 <h1> List of Itineraries </h1>
             </div>
 
-            <div style={{justifyContent: 'flex-end'}}>
+            <div style={{ justifyContent: "flex-end" }}>
                 <Button
-                    variant = "contained"
-                    color = "primary"
-                    style={{ marginBottom: '20px' }}
-                    className='addButton'
+                    variant="contained"
+                    color="primary"
+                    style={{ marginBottom: "20px" }}
+                    className="addButton"
                 >
                     Add New Itinerary
                 </Button>
@@ -35,14 +46,19 @@ function Dashboard() {
 
             <List>
                 {itineraryList.map((itinerary) => {
-                    <ListItemButton>
-                        <ListItemText primary={itinerary.title} secondary = {itinerary.destination} />
-                        <ListItemText primary={itinerary.country}/>
-                    </ListItemButton>
-                })}        
+                    return (
+                        <ListItemButton>
+                            <ListItemText
+                                primary={itinerary.budget}
+                                secondary={itinerary.title}
+                            />
+                            <ListItemText primary={itinerary.country_id} />
+                        </ListItemButton>
+                    );
+                })}
             </List>
         </div>
-	);
+    );
 }
 
 export default Dashboard;
