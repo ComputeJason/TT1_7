@@ -6,7 +6,15 @@ const itinerarydestinationController = require("../controllers/itinerarydestinat
 const itinerarydestinationRouter = express.Router();
 
 itinerarydestinationRouter
-	.route("/:id")
+	.route("/destinations/:id")
 	.get(itinerarydestinationController.getDestinationNameByItineraryId);
+
+itinerarydestinationRouter
+	.route("/:id")
+	.get(itinerarydestinationController.getItineraryDestinationById);
+
+itinerarydestinationRouter
+	.route("/:id")
+	.delete(itinerarydestinationController.deleteItineraryDestination);
 
 module.exports = itinerarydestinationRouter;
